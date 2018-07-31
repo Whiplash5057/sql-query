@@ -1,0 +1,87 @@
+-- select username, created_at from users
+--     order by created_at asc
+--     limit 5;
+
+-- select 
+--     dayname(created_at) as 'day_of_the_week',
+--     count(dayname(created_at)) as 'creation_count'
+-- from users
+--     group by dayname(created_at)
+--     order by  count(dayname(created_at)) desc;
+
+-- +-----------------+----------------------------+
+-- | day_of_the_week | count(dayname(created_at)) |
+-- +-----------------+----------------------------+
+-- | Thursday        |                         16 |
+-- | Sunday          |                         16 |
+-- | Tuesday         |                         14 |
+-- | Saturday        |                         12 |
+-- | Wednesday       |                         13 |
+-- | Monday          |                         14 |
+-- | Friday          |                         15 |
+-- +-----------------+----------------------------+
+
+-- select 
+--     username,
+--     count(photos.image_url)
+-- from users
+-- left join photos 
+--     on photos.user_id = users.id
+--     where photos.image_url is null
+--     group by users.username;
+
+-- +---------------------+-------------------------+
+-- | username            | count(photos.image_url) |
+-- +---------------------+-------------------------+
+-- | Aniya_Hackett       |                       0 |
+-- | Bartholome.Bernhard |                       0 |
+-- | Bethany20           |                       0 |
+-- | Darby_Herzog        |                       0 |
+-- | David.Osinski47     |                       0 |
+-- | Duane60             |                       0 |
+-- | Esmeralda.Mraz57    |                       0 |
+-- | Esther.Zulauf61     |                       0 |
+-- | Franco_Keebler64    |                       0 |
+-- | Hulda.Macejkovic    |                       0 |
+-- | Jaclyn81            |                       0 |
+-- | Janelle.Nikolaus81  |                       0 |
+-- | Jessyca_West        |                       0 |
+-- | Julien_Schmidt      |                       0 |
+-- | Kasandra_Homenick   |                       0 |
+-- | Leslie67            |                       0 |
+-- | Linnea59            |                       0 |
+-- | Maxwell.Halvorson   |                       0 |
+-- | Mckenna17           |                       0 |
+-- | Mike.Auer39         |                       0 |
+-- | Morgan.Kassulke     |                       0 |
+-- | Nia_Haag            |                       0 |
+-- | Ollie_Ledner37      |                       0 |
+-- | Pearl7              |                       0 |
+-- | Rocio33             |                       0 |
+-- | Tierra.Trantow      |                       0 |
+-- +---------------------+-------------------------+
+
+
+-- select 
+--     likes.photo_id as 'id',
+--     count(likes.photo_id) as 'count',
+--     photos.image_url as 'image_url',
+--     users.username as 'username'
+-- from likes
+--     join photos
+--         on photos.id = likes.photo_id
+--     join users
+--         on  users.id = photos.user_id
+--     group by likes.photo_id
+--     order by count(count) desc
+--     limit 3;
+
+
+-- SELECT username, 
+--        Count(*) AS num_likes 
+-- FROM   users 
+--        INNER JOIN likes 
+--                ON users.id = likes.user_id 
+-- GROUP  BY likes.user_id 
+-- HAVING num_likes = (SELECT Count(*) 
+--                     FROM   photos); 
